@@ -8,12 +8,12 @@ public class ObjInitialize extends Constants {
 	
 	 
 	
-	public void initializeClassObj() {
+	public static void initializeClassObj() {
 		//initialize each page class objects here..
 		
-		homeObj=new HomePage();
-		loansObj=new LoansPage();
-		transferObj=new TransferPage();
+		homeObj= new HomePage();
+		loansObj= new LoansPage();
+		transferObj= new TransferPage();
 		
 	}
 

@@ -40,16 +40,19 @@ public class LoansPage extends CommonUI {
 
 	@FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/form/div/button[1]")
 	WebElement buttonNext;
-
-	@FindBy(xpath = "//span[contains(text(),'Confirm')]")
-	WebElement buttonConfirm;
-
+	
 	@FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/div/button[2]/span")
 	WebElement buttonBack;
 
 	@FindBy(xpath = "//span[contains(text(),'Reset')]")
 	WebElement buttonReset;
 
+	@FindBy(xpath = "//span[contains(text(),'Confirm')]")
+	WebElement buttonConfirm;
+
+	@FindBy (xpath="/app-loan-success/div/div/div/div/mat-card/mat-card-content")
+	WebElement textMSG;
+	
 	public LoansPage() {
 
 		PageFactory.initElements(driver, this);
@@ -124,6 +127,10 @@ public class LoansPage extends CommonUI {
 	public void resetClick() {
 		click(buttonReset);
 
+	}
+	
+	public String getMSG(){
+		return getText(textMSG);
 	}
 
 }

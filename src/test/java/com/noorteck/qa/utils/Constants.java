@@ -14,12 +14,12 @@ import com.noorteck.qa.pages.TransferPage;
 public class Constants {
 	
 	
-	public WebDriver driver;
+	public static WebDriver driver;
 	
 	//declare class objects and common objects
 	
-	public HomePage homeObj;
-	public LoansPage loansObj;
-	public TransferPage transferObj;
+	public static HomePage homeObj;
+	public static LoansPage loansObj;
+	public static TransferPage transferObj;
 
 }

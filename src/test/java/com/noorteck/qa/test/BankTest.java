@@ -1,5 +1,7 @@
 package com.noorteck.qa.test;
 
+import org.testng.asserts.SoftAssert;
+
 import com.noorteck.qa.utils.CommonUI;
 import com.noorteck.qa.utils.ObjInitialize;
 
@@ -9,36 +11,38 @@ public class BankTest extends ObjInitialize {
 		
 		String url="https://usdemo.vee24.com/#/transactions";
 				
-		CommonUI commonUIObj=new CommonUI();
+		CommonUI.openBrowser("chrome");
 		
-		commonUIObj.openBrowser("chrome");
+		CommonUI.navigate(url);
 		
-		commonUIObj.navigate(url);
-		
-		ObjInitialize obj=new ObjInitialize();
-		
-	    obj.initializeClassObj();
-	    
-	    BankTest testObj=new BankTest();
-	    
-	    testObj.bankTestOne();
-	    testObj.bankTestTwo();
+		initializeClassObj();
+	  
+	    bankTestOne();
+	    bankTestTwo();
 	   
 	}
 	
-	public void bankTestOne() {
+	public static void bankTestOne() {
 		
 		transferObj.clickTransfer();
-		transferObj.dropdownOriginAcct("text", "Rainy Day");
-		transferObj.dropdownDestinAcct("text", "Investing");
+		//transferObj.dropdownOriginAcct("text", "Rainy Day");
+		//.dropdownDestinAcct("text", "Investing");
 		transferObj.enterAmount("1000");
 		transferObj.enterSSN("123435677");
 		transferObj.enterPin("1235");
 		transferObj.clickFunds();
-		// verify "Success! Funds successfully transferred." 
+		transferObj.getMessage();
+		
+		String expectMSG="Success! Funds successfully transferred.";
+		String actualMSG=transferObj.getMessage();
+		
+		SoftAssert softAssert= new SoftAssert();
+		softAssert.assertEquals(expectMSG, actualMSG);
+		softAssert.assertAll();
+		
 		}
 	
-	public void bankTestTwo() {
+	public static void bankTestTwo() {
 		
 		loansObj.clickLoan();
 		loansObj.enterName("John Cena");
@@ -51,7 +55,14 @@ public class BankTest extends ObjInitialize {
 	    loansObj.enterSSN("123456778");
 	    loansObj.nextSubmit();
 	    loansObj.confirmClick();
+		loansObj.getMSG();
 		
+		String expMSG="Submission Success!";
+		String actMSG=loansObj.getMSG();
+		
+		SoftAssert softAssert2= new SoftAssert();
+		softAssert2.assertEquals(expMSG, actMSG);
+		softAssert2.assertAll();
 		//verify" Submission Success!"
 	}
 	
